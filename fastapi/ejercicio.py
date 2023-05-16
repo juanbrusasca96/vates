@@ -121,6 +121,18 @@ def get_item_by_offer(is_offer: Offer):
     }
 
 
+@app.get("/items/filter_by_price_and_offer/")
+def get_item_by_price(is_offer: Offer, item_price: int = Query(gt=0)):
+    items_to_return = []
+    for item in INITIAL_ITEMS:
+        if item.price <= item_price and str(item.is_offer) == is_offer.value:
+            items_to_return.append(item)
+    return {
+        "items seleccionados": items_to_return,
+        "porcentaje de items seleccionados": f"{len(items_to_return)* 100/ len(INITIAL_ITEMS)}%",
+    }
+
+
 @app.post("/items")
 def add_item(item_request: ItemRequest):
     new_item = find_item_id(Item(**item_request.dict()))
