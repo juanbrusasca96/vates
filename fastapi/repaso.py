@@ -14,6 +14,8 @@ class Usuario(BaseModel):
     apellido: str
     edad: int
 
+    
+
 
 class Item(BaseModel):
     nombre: str
