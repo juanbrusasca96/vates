@@ -11,7 +11,7 @@ class UserModel(Base):
     hashed_password = Column(String)
     is_active = Column(Boolean, default=True)
 
-    items = relationship("ItemModel", back_populates='users')
+    items = relationship("ItemModel", back_populates='owner')
 
 
 class ItemModel(Base):
